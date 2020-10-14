@@ -29,13 +29,12 @@ FROM ubuntu:18.04
 WORKDIR /server
 
 #Dependencies and server user
-RUN useradd -u 1000 server
+RUN apt-get update &&\
+    apt-get install libcurl4 -y
 
-COPY --from=builder --chown=server /builder/bedrock_server  ./
+COPY --from=builder /builder/bedrock_server  ./
 
 ENV LD_LIBRARY_PATH=.
-
-USER server
 
 EXPOSE 19132/udp
 
