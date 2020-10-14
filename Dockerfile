@@ -24,11 +24,11 @@ RUN if [ "$VERSION" = "latest" ] ; then \
     
 ############################################################################################
 
-FROM alpine:3.12
+FROM ubuntu:18.04
 
 WORKDIR /server
 
-RUN adduser -D -u 1000 server
+RUN useradd -u 1000 server
 
 COPY --from=builder --chown=server /builder/bedrock_server/*  ./
 
