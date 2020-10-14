@@ -28,7 +28,6 @@ FROM ubuntu:18.04
 
 WORKDIR /server
 
-#Dependencies and server user
 RUN useradd -u 1000 server
 
 COPY --from=builder --chown=server /builder/bedrock_server  ./
@@ -38,5 +37,3 @@ ENV LD_LIBRARY_PATH=.
 USER server
 
 EXPOSE 19132/udp
-
-CMD ./bedrock_server
