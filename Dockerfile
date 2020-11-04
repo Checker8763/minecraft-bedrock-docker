@@ -26,12 +26,11 @@ RUN apk add curl unzip grep &&\
 
 FROM ubuntu:18.04
 
-WORKDIR /server
+WORKDIR /home/server
 
 #Dependencies and server user
 RUN useradd -u 1000 server &&\
-    apt-get update &&\
-    apt-get install libcurl4 -y
+    apt-get update && apt-get install libcurl4 -y && rm -rf /var/lib/apt/lists/* 
 
 COPY --from=builder --chown=server /builder/bedrock_server  ./
 
